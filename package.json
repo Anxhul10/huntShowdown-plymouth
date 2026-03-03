@@ -1,6 +1,6 @@
 {
-  "name": "onepiece-plymouth",
-  "version": "1.1.1",
+  "name": "huntshowdown-plymouth",
+  "version": "0.0.0",
   "description": "Install the theme.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,16 +12,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Anxhul10/onePiece-plymouth.git"
+    "url": "https://github.com/Anxhul10/huntShowdown-plymouth.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/Anxhul10/onePiece-plymouth/issues"
+    "url": "https://github.com/Anxhul10/huntShowdown-plymouth/issues"
   },
-  "homepage": "https://github.com/Anxhul10/onePiece-plymouth#readme",
+  "homepage": "https://github.com/Anxhul10/huntShowdown-plymouth#readme",
   "dependencies": {
     "@changesets/cli": "^2.29.8",
     "markdownlint": "^0.38.0"
