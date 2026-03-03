@@ -1,0 +1,30 @@
+{
+  "name": "onepiece-plymouth",
+  "version": "1.1.1",
+  "description": "Install the theme.",
+  "main": "cli/init.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "markdownlint": "markdownlint --fix README.md",
+    "cs": " changeset && changeset version"
+  },
+  "bin": {
+    "onePiece-plymouth": "index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Anxhul10/onePiece-plymouth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/Anxhul10/onePiece-plymouth/issues"
+  },
+  "homepage": "https://github.com/Anxhul10/onePiece-plymouth#readme",
+  "dependencies": {
+    "@changesets/cli": "^2.29.8",
+    "markdownlint": "^0.38.0"
+  }
+}

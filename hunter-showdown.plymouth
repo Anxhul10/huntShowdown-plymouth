@@ -1,0 +1,8 @@
+[Plymouth Theme]
+Name=Hunter showdown
+Description=This is a plymouth theme which runs hunter showdown
+ModuleName=script
+
+[script]
+ImageDir=/usr/share/plymouth/themes/hunter-showdown
+ScriptFile=/usr/share/plymouth/themes/hunter-showdown/hunter-showdown.script
