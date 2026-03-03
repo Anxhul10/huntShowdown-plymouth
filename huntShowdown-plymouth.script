@@ -1,0 +1,31 @@
+for (i = 1; i <= 289; i++) {
+
+  if (i < 10)
+    filename = "/media/1920x1080/ezgif-frame-00" + i + ".png";
+  else if (i < 100)
+    filename = "/media/1920x1080/ezgif-frame-0" + i + ".png";
+  else
+    filename = "/media/1920x1080/ezgif-frame-" + i + ".png";
+  
+  hunt_show_down_arr[i] = Image(filename);
+}
+
+pos_x = Window.GetWidth()/2 - hunt_show_down_arr[1].GetWidth()/2;
+pos_y = Window.GetHeight()/2 - hunt_show_down_arr[1].GetHeight()/2;
+
+sprite = Sprite(hunt_show_down_arr[1]);
+sprite.SetX(pos_x);
+sprite.SetY(pos_y);
+
+count = 1;
+
+fun refresh_callback () {
+
+  sprite.SetImage(hunt_show_down_arr[count]);
+
+  sprite.SetScale(scale);
+
+  count += 1;
+}
+
+Plymouth.SetRefreshFunction(refresh_callback);
