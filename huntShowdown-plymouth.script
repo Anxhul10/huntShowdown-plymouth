@@ -1,4 +1,4 @@
-for (i = 1; i <= 126; i++) {
+for (i = 1; i <= 173; i++) {
 
   if (i < 10)
     filename = "/media/1920x1080/ezgif-frame-00" + i + ".png";
