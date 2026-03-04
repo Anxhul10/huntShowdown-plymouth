@@ -3,7 +3,7 @@
 <!--markdownlint-disable MD041-->
 ## Demo Video
 
-[Watch the demo video](https://vimeo.com/1170117932?share=copy&fl=sv&fe=ci)
+[![Watch the demo video](https://vumbnail.com/1170117932.jpg)](https://vimeo.com/1170117932?share=copy&fl=sv&fe=ci)
 
 ### Installation on Ubuntu ,Fedora & Arch Linux(Single CLI - Easiest)
 
