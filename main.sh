@@ -32,6 +32,8 @@ if [ osCheck $1 ]; then
             sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/huntShowdown-plymouth/huntShowdown-plymouth.plymouth $priority
             sudo update-alternatives --config default.plymouth
             sudo update-initramfs -u
+            cd /usr/share/plymouth/themes/huntShowdown-plymouth
+            sudo rm -rf .git .github .changeset .yarn .gitignore .markdownlint.json .pnp.cjs .pnp.loader.mjs package.json yarn.lock CHANGELOG.md README.md test-script CNAME
             printf "\n\e[32mPlease restart your system to see Plymouth. !!\e[0m\n"
         elif [ "$NAME" = "Fedora Linux" ]; then
             # install dependency on each install (redundant process)
@@ -47,6 +49,8 @@ if [ osCheck $1 ]; then
             sudo git clone https://github.com/Anxhul10/huntShowdown-plymouth.git
             sudo plymouth-set-default-theme huntShowdown-plymouth -R
             sudo dracut --force
+            cd /usr/share/plymouth/themes/huntShowdown-plymouth
+            sudo rm -rf .git .github .changeset .yarn .gitignore .markdownlint.json .pnp.cjs .pnp.loader.mjs package.json yarn.lock CHANGELOG.md README.md test-script CNAME
             printf "\n\e[32mPlease restart your system to see Plymouth. !!\e[0m\n"
         elif [ "$NAME" = "Arch Linux" ]; then
             echo " Is plymouth installed in your Arch Linux ? y/n"
@@ -60,7 +64,10 @@ if [ osCheck $1 ]; then
             cd  /usr/share/plymouth/themes
             sudo git clone https://github.com/Anxhul10/huntShowdown-plymouth.git
             sudo plymouth-set-default-theme -R huntShowdown-plymouth
+            cd /usr/share/plymouth/themes/huntShowdown-plymouth
+            sudo rm -rf .git .github .changeset .yarn .gitignore .markdownlint.json .pnp.cjs .pnp.loader.mjs package.json yarn.lock CHANGELOG.md README.md test-script CNAME
             printf "\n\e[32mPlease restart your system to see Plymouth. !!\e[0m\n"
+            
         else 
             echo "Currently, this CLI supports Ubuntu and Fedora."
             echo "If your Linux distribution is not supported, please open an issue at:"
