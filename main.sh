@@ -67,6 +67,21 @@ if [ osCheck $1 ]; then
             cd /usr/share/plymouth/themes/huntShowdown-plymouth
             sudo rm -rf .git .github .changeset .yarn .gitignore .markdownlint.json .pnp.cjs .pnp.loader.mjs package.json yarn.lock CHANGELOG.md README.md test-script CNAME
             printf "\n\e[32mPlease restart your system to see Plymouth. !!\e[0m\n"
+         elif [ "$NAME" = "EndeavourOS" ]; then
+            echo " Is plymouth installed in your EndeavourOS ? y/n"
+            read answer
+            if [ "$answer" != "${answer#[Yy]}" ] ;then 
+                echo "skipping plymouth installation!!"
+            else
+                sudo pacman -S plymouth
+            fi
+            cd  /usr/share/plymouth/themes
+            sudo git clone https://github.com/Anxhul10/huntShowdown-plymouth.git
+            sudo plymouth-set-default-theme huntShowdown-plymouth
+            cd /usr/share/plymouth/themes/huntShowdown-plymouth
+            sudo rm -rf .git .github .changeset .yarn .gitignore .markdownlint.json .pnp.cjs .pnp.loader.mjs package.json yarn.lock CHANGELOG.md README.md test-script CNAME
+	    dracut-rebuild #EndeavourOS uses dracut
+            printf "\n\e[32mPlease restart your system to see Plymouth. !!\e[0m\n"
             
         else 
             echo "Currently, this CLI supports Ubuntu and Fedora."
