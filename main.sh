@@ -47,7 +47,7 @@ if [ osCheck $1 ]; then
             cd  /usr/share/plymouth/themes
             sudo rm -rf huntShowdown-plymouth
             sudo git clone https://github.com/Anxhul10/huntShowdown-plymouth.git
-            sudo plymouth-set-default-theme huntShowdown-plymouth -R
+            sudo plymouth-set-default-theme -R huntShowdown-plymouth
             sudo dracut --force
             cd /usr/share/plymouth/themes/huntShowdown-plymouth
             sudo rm -rf .git .github .changeset .yarn .gitignore .markdownlint.json .pnp.cjs .pnp.loader.mjs package.json yarn.lock CHANGELOG.md README.md test-script CNAME
