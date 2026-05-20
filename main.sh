@@ -84,7 +84,7 @@ if [ osCheck $1 ]; then
             printf "\n\e[32mPlease restart your system to see Plymouth. !!\e[0m\n"
             
         else 
-            echo "Currently, this CLI supports Ubuntu and Fedora."
+            echo "Currently, this CLI supports Ubuntu, Arch, Fedora and EndeavourOS."
             echo "If your Linux distribution is not supported, please open an issue at:"
             echo "https://github.com/Anxhul10/huntShowdown-plymouth/issues"
        fi
