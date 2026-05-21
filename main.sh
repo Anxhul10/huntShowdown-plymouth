@@ -62,6 +62,7 @@ if [ osCheck $1 ]; then
                 sudo systemctl enable plymouth-start.service
             fi
             cd  /usr/share/plymouth/themes
+            rm -rf huntShowdown-plymouth
             sudo git clone https://github.com/Anxhul10/huntShowdown-plymouth.git
             sudo plymouth-set-default-theme -R huntShowdown-plymouth
             cd /usr/share/plymouth/themes/huntShowdown-plymouth
@@ -76,6 +77,7 @@ if [ osCheck $1 ]; then
                 sudo pacman -S plymouth
             fi
             cd  /usr/share/plymouth/themes
+            rm -rf huntShowdown-plymouth
             sudo git clone https://github.com/Anxhul10/huntShowdown-plymouth.git
             sudo plymouth-set-default-theme huntShowdown-plymouth
             cd /usr/share/plymouth/themes/huntShowdown-plymouth
