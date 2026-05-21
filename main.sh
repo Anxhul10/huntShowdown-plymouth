@@ -79,7 +79,7 @@ if [ osCheck $1 ]; then
             cd  /usr/share/plymouth/themes
             rm -rf huntShowdown-plymouth
             sudo git clone https://github.com/Anxhul10/huntShowdown-plymouth.git
-            sudo plymouth-set-default-theme huntShowdown-plymouth
+            sudo plymouth-set-default-theme -R huntShowdown-plymouth
             cd /usr/share/plymouth/themes/huntShowdown-plymouth
             sudo rm -rf .git .github .changeset .yarn .gitignore .markdownlint.json .pnp.cjs .pnp.loader.mjs package.json yarn.lock CHANGELOG.md README.md test-script CNAME
             dracut-rebuild #EndeavourOS uses dracut
