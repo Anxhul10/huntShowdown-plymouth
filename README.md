@@ -12,24 +12,28 @@ curl -s -L -o /tmp/huntShowdown-plymouth.sh https://raw.githubusercontent.com/An
 ```
 
 ## Installation On Fedora Linux
+
 1. change directory
 
-```
+```bash
 cd  /usr/share/plymouth/themes
 ```
 
-2. clone repo
-```
+1. clone repo
+
+```bash
 sudo git clone https://github.com/Anxhul10/huntShowdown-plymouth.git
 ```
 
-3. set plymouth theme
-```
+1. set plymouth theme
+
+```bash
 sudo plymouth-set-default-theme huntShowdown-plymouth -R
 ```
 
-4. manually rebuild initramfs
-```
+1. manually rebuild initramfs
+
+```bash
 sudo dracut --force
 ```
 
@@ -41,19 +45,19 @@ sudo dracut --force
 sudo git clone https://github.com/Anxhul10/huntShowdown-plymouth.git
 ```
 
-2. Install the theme.
+1. Install the theme.
 
 ```bash
     sudo update-alternatives --install /usr/share/plymouth/themes/default.plymouth default.plymouth /usr/share/plymouth/themes/huntShowdown-plymouth/huntShowdown-plymouth.plymouth 120
 ```
 
-3. Select the default theme.
+1. Select the default theme.
 
 ```bash
     sudo update-alternatives --config default.plymouth
 ```
 
-4. Update the initramfs image.
+1. Update the initramfs image.
 
 ```bash
     sudo update-initramfs -u
@@ -70,16 +74,21 @@ If you want to install this on < Ubuntu 16.04, change the path from /usr/share/p
 ```bash
 sudo git clone https://github.com/Anxhul10/huntShowdown-plymouth.git
 ```
-2. install plymouth if not installed 
-```
+
+1. install plymouth if not installed
+
+```bash
 sudo pacman -S plymouth
 sudo systemctl enable plymouth-start.service
 ```
-3. set this theme as default 
-```
+
+1. set this theme as default
+
+```bash
 sudo plymouth-set-default-theme -R huntShowdown-plymouth
 ```
-Now reboot. 
+
+Now reboot.
 
 ## Development
 
