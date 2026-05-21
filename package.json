@@ -7,9 +7,7 @@
     "markdownlint": "markdownlint --fix README.md",
     "cs": " changeset && changeset version"
   },
-  "bin": {
-    "onePiece-plymouth": "index.js"
-  },
+  "bin": "index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/Anxhul10/huntShowdown-plymouth.git"
@@ -23,7 +21,9 @@
   },
   "homepage": "https://github.com/Anxhul10/huntShowdown-plymouth#readme",
   "dependencies": {
-    "@changesets/cli": "^2.29.8",
-    "markdownlint": "^0.38.0"
+    "@changesets/cli": "^2.29.8"
+  },
+  "devDependencies": {
+    "markdownlint-cli": "^0.48.0"
   }
 }
