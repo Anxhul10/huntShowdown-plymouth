@@ -24,7 +24,7 @@ if [ osCheck $1 ]; then
     else 
         source /etc/os-release
         echo -e "\e[31m$NAME detected !!\e[0m"
-        if [ "$NAME" = "Ubuntu" ]; then
+        if [ "$NAME" = "Ubuntu" ] || [ "$NAME" = "Kali GNU/Linux" ]; then
             read -p "Enter the priority of plymouth : " priority < /dev/tty
             cd  /usr/share/plymouth/themes
             sudo rm -rf huntShowdown-plymouth
@@ -86,7 +86,7 @@ if [ osCheck $1 ]; then
             printf "\n\e[32mPlease restart your system to see Plymouth. !!\e[0m\n"
             
         else 
-            echo "Currently, this CLI supports Ubuntu, Arch, Fedora and EndeavourOS."
+            echo "Currently, this CLI supports Ubuntu, Kali Linux, Arch, Fedora and EndeavourOS."
             echo "If your Linux distribution is not supported, please open an issue at:"
             echo "https://github.com/Anxhul10/huntShowdown-plymouth/issues"
        fi
