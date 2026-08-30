@@ -19,10 +19,28 @@ sprite.SetY(pos_y);
 
 count = 1;
 
-# Animation only plays once a disk-unlock/question prompt (if any) has been
-# answered successfully; on systems with no prompt it just runs from boot.
-animating = 1;
+# The animation is meant to play *after* a disk-unlock/question prompt (if any)
+# has been answered, so it must not start the instant the splash appears: on
+# encrypted systems the prompt only arrives a beat later, and animating in that
+# window flashes frames before the prompt replaces them.
+#
+# So start hidden. If a prompt turns up, the animation waits for the unlock. If
+# none has turned up by the time the grace period expires, there is nothing to
+# unlock on this system and the animation just plays from there.
+animating = 0;
 had_prompt = 0;
+startup_ticks = 0;
+
+# Plymouth drives the refresh callback at ~50Hz, so this is roughly 1.5s.
+# Raise it if a slower initramfs still flashes frames before the prompt appears.
+startup_grace_ticks = 75;
+
+sprite.SetOpacity(0);
+
+fun start_animation () {
+  animating = 1;
+  sprite.SetOpacity(1);
+}
 
 fun refresh_callback () {
 
@@ -32,6 +50,12 @@ fun refresh_callback () {
     sprite.SetScale(scale);
 
     count += 1;
+  } else if (had_prompt == 0) {
+    # No prompt yet - run out the grace period, then assume there won't be one.
+    startup_ticks += 1;
+
+    if (startup_ticks >= startup_grace_ticks)
+      start_animation();
   }
 }
 
@@ -71,7 +95,6 @@ fun set_prompt_entry (text) {
 fun hide_prompt () {
   prompt_label_sprite.SetOpacity(0);
   prompt_entry_sprite.SetOpacity(0);
-  sprite.SetOpacity(1);
 }
 
 fun display_normal_callback () {
@@ -81,7 +104,7 @@ fun display_normal_callback () {
   # that's the cue to (re)start the animation from the first frame.
   if (had_prompt) {
     count = 1;
-    animating = 1;
+    start_animation();
   }
 }
 
