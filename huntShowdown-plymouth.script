@@ -19,13 +19,111 @@ sprite.SetY(pos_y);
 
 count = 1;
 
+# Animation only plays once a disk-unlock/question prompt (if any) has been
+# answered successfully; on systems with no prompt it just runs from boot.
+animating = 1;
+had_prompt = 0;
+
 fun refresh_callback () {
 
-  sprite.SetImage(hunt_show_down_arr[count]);
+  if (animating) {
+    sprite.SetImage(hunt_show_down_arr[count]);
 
-  sprite.SetScale(scale);
+    sprite.SetScale(scale);
 
-  count += 1;
+    count += 1;
+  }
 }
 
 Plymouth.SetRefreshFunction(refresh_callback);
+
+Window.SetBackgroundTopColor(0, 0, 0);
+Window.SetBackgroundBottomColor(0, 0, 0);
+
+#----------------------------------------- Disk unlock prompt --------------------------------
+
+prompt_label_image = Image.Text(" ", 1, 1, 1);
+prompt_label_sprite = Sprite(prompt_label_image);
+prompt_label_sprite.SetZ(10000);
+prompt_label_sprite.SetOpacity(0);
+
+prompt_entry_image = Image.Text(" ", 1, 1, 1);
+prompt_entry_sprite = Sprite(prompt_entry_image);
+prompt_entry_sprite.SetZ(10000);
+prompt_entry_sprite.SetOpacity(0);
+
+fun set_prompt_label (text) {
+  prompt_label_image = Image.Text(text, 1, 1, 1);
+  prompt_label_sprite.SetImage(prompt_label_image);
+  prompt_label_sprite.SetX(Window.GetWidth()/2 - prompt_label_image.GetWidth()/2);
+  prompt_label_sprite.SetY(Window.GetHeight()/2 - prompt_label_image.GetHeight() - 5);
+  prompt_label_sprite.SetOpacity(1);
+}
+
+fun set_prompt_entry (text) {
+  prompt_entry_image = Image.Text(text, 1, 1, 1);
+  prompt_entry_sprite.SetImage(prompt_entry_image);
+  prompt_entry_sprite.SetX(Window.GetWidth()/2 - prompt_entry_image.GetWidth()/2);
+  prompt_entry_sprite.SetY(Window.GetHeight()/2 + 5);
+  prompt_entry_sprite.SetOpacity(1);
+}
+
+fun hide_prompt () {
+  prompt_label_sprite.SetOpacity(0);
+  prompt_entry_sprite.SetOpacity(0);
+  sprite.SetOpacity(1);
+}
+
+fun display_normal_callback () {
+  hide_prompt();
+
+  # Coming back from a prompt means the passphrase/answer was accepted -
+  # that's the cue to (re)start the animation from the first frame.
+  if (had_prompt) {
+    count = 1;
+    animating = 1;
+  }
+}
+
+fun display_password_callback (prompt, bullets) {
+
+  if (animating) {
+    animating = 0;
+    count = 1;
+  }
+  sprite.SetOpacity(0);
+  had_prompt = 1;
+
+  if (prompt == "")
+    prompt = "Enter passphrase to unlock disk:";
+
+  set_prompt_label(prompt);
+
+  bullet_string = "";
+  for (i = 0; i < bullets; i++)
+    bullet_string += "*";
+  if (bullet_string == "")
+    bullet_string = " ";
+
+  set_prompt_entry(bullet_string);
+}
+
+fun display_question_callback (prompt, entry) {
+
+  if (animating) {
+    animating = 0;
+    count = 1;
+  }
+  sprite.SetOpacity(0);
+  had_prompt = 1;
+
+  if (entry == "")
+    entry = " ";
+
+  set_prompt_label(prompt);
+  set_prompt_entry(entry);
+}
+
+Plymouth.SetDisplayNormalFunction(display_normal_callback);
+Plymouth.SetDisplayPasswordFunction(display_password_callback);
+Plymouth.SetDisplayQuestionFunction(display_question_callback);
